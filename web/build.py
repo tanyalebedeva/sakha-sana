@@ -14,12 +14,12 @@ keys = sorted([k for k in st.files if k.startswith("p")], key=lambda k: int(k[1:
 blob, tensors = bytearray(), []
 for k in keys:
     a = st[k].astype(np.float32)
-    if a.ndim == 2:                                  # матрицы — int8, масштаб на столбец
+    if a.ndim == 2:                                  # матрицы - int8, масштаб на столбец
         sc = np.abs(a).max(0) / 127 + 1e-12
         q = np.clip(np.round(a / sc), -127, 127).astype(np.int8)
         tensors.append(dict(shape=list(a.shape), off=len(blob), scale=[float(f"{s:.6g}") for s in sc]))
         blob += q.tobytes()
-    else:                                            # векторы — float32
+    else:                                            # векторы - float32
         tensors.append(dict(shape=list(a.shape), f32=base64.b64encode(a.tobytes()).decode()))
 W = dict(cfg=cfg, chars=CHARS, tensors=tensors, data=base64.b64encode(bytes(blob)).decode())
 weights_js = "window.SANA_WEIGHTS=" + json.dumps(W, ensure_ascii=False) + ";"

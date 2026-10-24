@@ -1,5 +1,5 @@
 """Мини-фреймворк на numpy: dilated Conv1D + LayerNorm + residual, CTC, Adam.
-Без PyTorch — все производные выписаны вручную (и проверены численно в tests)."""
+Без PyTorch - все производные выписаны вручную (и проверены численно в tests)."""
 from __future__ import annotations
 
 import numpy as np
@@ -173,7 +173,7 @@ def _lse(*xs):
 
 
 def ctc_loss(logits, T_lens, labels, blank=0):
-    """logits (B,T,V); labels — список массивов. Возвращает (loss_mean, dlogits).
+    """logits (B,T,V); labels - список массивов. Возвращает (loss_mean, dlogits).
     Прямой-обратный проход в лог-пространстве, векторизованный по батчу."""
     B, T, V = logits.shape
     lp = log_softmax(logits.astype(np.float64))

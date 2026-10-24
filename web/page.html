@@ -112,7 +112,7 @@ svg text { fill: var(--muted); font: 11px var(--mono); }
 <main class="wrap">
   <header class="hero">
     <span class="eyebrow">пет-проект · речевые технологии · саха тыла</span>
-    <h1>Саҥа<span class="ipa">/saˈŋa/ — «голос, речь»</span></h1>
+    <h1>Саҥа<span class="ipa">/saˈŋa/ - «голос, речь»</span></h1>
     <p class="lede">Якутская речь, собранная с нуля: правила фонетики и морфологии, формантный синтезатор и нейросеть распознавания, обученная только на синтетических голосах. Всё на numpy, без готовых моделей и датасетов. Здесь синтезатор и распознаватель работают прямо в браузере.</p>
   </header>
 
@@ -139,10 +139,10 @@ svg text { fill: var(--muted); font: 11px var(--mono); }
       <div class="specbox"><canvas id="spec" width="1200" height="240" aria-label="Спектрограмма синтезированной речи с фонемами"></canvas></div>
       <div class="readout">
         <div><span class="lbl">МФА</span><span class="big" id="ipa"></span></div>
-        <div><span class="lbl">Распознано моделью</span><span class="asr" id="asr">—</span><span id="cer"></span></div>
+        <div><span class="lbl">Распознано моделью</span><span class="asr" id="asr">-</span><span id="cer"></span></div>
       </div>
     </div>
-    <p class="note">Над спектрограммой подписаны фонемы и их границы, внизу оранжевыми засечками — кадры, где CTC-модель выдала букву. Двиньте шум влево, чтобы посмотреть, когда распознавание начнёт ошибаться.</p>
+    <p class="note">Над спектрограммой подписаны фонемы и их границы, внизу оранжевыми засечками - кадры, где CTC-модель выдала букву. Двиньте шум влево, чтобы посмотреть, когда распознавание начнёт ошибаться.</p>
   </section>
 
   <section aria-labelledby="ana-h">
@@ -238,8 +238,8 @@ const RESULTS = /*RESULTS*/null;
     const r = Sana.synthesize(text, spk, { tracks: true });
     const y = Sana.addNoise(r.y, +$("snr").value, 11);
     last = { text, y, segs: r.segs, asr: null };
-    $("ipa").textContent = Sana.toIPA(text) || "—";
-    $("asr").textContent = "—"; $("cer").innerHTML = "";
+    $("ipa").textContent = Sana.toIPA(text) || "-";
+    $("asr").textContent = "-"; $("cer").innerHTML = "";
     draw();
     return last;
   }
