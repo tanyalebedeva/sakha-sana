@@ -1,0 +1,372 @@
+<title>Саҥа</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500;700;800&family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap&subset=cyrillic-ext">
+<style>
+/* Layout: one editorial column; the "studio" (synth + spectrogram + recognizer) is the single framed object, everything else sits on the page ground. */
+:root {
+  --bg: #f3f5f6; --panel: #ffffff; --ink: #17202a; --muted: #586470; --line: #d6dce1;
+  --accent: #985619; --accent-soft: #f1e3d2; --ice: #2c5f80; --good: #2f7a4f; --bad: #a33a2b;
+  --spec0: #ffffff; --spec1: #b9d3e4; --spec2: #2c5f80; --spec3: #985619; --spec4: #3a1d05;
+  --display: "Alegreya", "Noto Serif", Georgia, serif;
+  --body: "Golos Text", "Noto Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", "Noto Sans Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0e1217; --panel: #151b22; --ink: #e5e9ed; --muted: #8f9aa5; --line: #27313b;
+  --accent: #e2a65c; --accent-soft: #3a2a17; --ice: #82b5d6; --good: #6cc492; --bad: #ef8a78;
+  --spec0: #151b22; --spec1: #1d3b52; --spec2: #3f7fa8; --spec3: #e2a65c; --spec4: #fff1d6; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0e1217; --panel: #151b22; --ink: #e5e9ed; --muted: #8f9aa5; --line: #27313b;
+  --accent: #e2a65c; --accent-soft: #3a2a17; --ice: #82b5d6; --good: #6cc492; --bad: #ef8a78;
+  --spec0: #151b22; --spec1: #1d3b52; --spec2: #3f7fa8; --spec3: #e2a65c; --spec4: #fff1d6; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 400 16px/1.6 var(--body); }
+.wrap { max-width: 1040px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 72px; display: grid; gap: 64px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.1; }
+h2 { font-size: clamp(1.7rem, 3.4vw, 2.3rem); font-weight: 700; }
+h3 { font-size: 1.15rem; font-weight: 700; }
+p { margin: 0; max-width: 66ch; }
+.eyebrow { font: 500 .72rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.muted { color: var(--muted); }
+.mono { font-family: var(--mono); }
+section { display: grid; gap: 20px; min-width: 0; }
+
+/* hero */
+.hero { display: grid; gap: 14px; }
+.hero h1 { font-size: clamp(3.6rem, 11vw, 7rem); font-weight: 800; letter-spacing: -.02em; }
+.hero h1 .ipa { font: 400 clamp(1rem, 2.4vw, 1.4rem)/1 var(--mono); color: var(--muted); letter-spacing: 0; margin-left: .4em; vertical-align: middle; }
+.hero .lede { font-size: clamp(1.05rem, 2vw, 1.25rem); max-width: 60ch; }
+
+/* studio */
+.studio { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: clamp(16px, 3vw, 28px); display: grid; gap: 18px; min-width: 0; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.textin { width: 100%; font: 500 clamp(1.2rem, 3vw, 1.6rem)/1.3 var(--display); color: var(--ink); background: transparent; border: none; border-bottom: 2px solid var(--line); padding: 6px 0 10px; }
+.textin:focus { outline: none; border-color: var(--accent); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font: 500 .85rem/1 var(--body); padding: 8px 12px; border-radius: 99px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; }
+.chip:hover { border-color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--panel); }
+.chip:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--ice); outline-offset: 2px; }
+.sliders { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px 22px; }
+.sl { display: grid; gap: 4px; font-size: .82rem; color: var(--muted); }
+.sl span b { color: var(--ink); font: 500 .82rem var(--mono); font-variant-numeric: tabular-nums; }
+.sl input { width: 100%; accent-color: var(--accent); }
+.btn { font: 600 .95rem/1 var(--body); padding: 12px 18px; border-radius: 10px; border: 1px solid var(--accent); background: var(--accent); color: var(--panel); cursor: pointer; }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn:disabled { opacity: .5; cursor: progress; }
+.specbox { position: relative; overflow-x: auto; border-radius: 8px; border: 1px solid var(--line); background: var(--spec0); }
+canvas#spec { display: block; width: 100%; height: 240px; min-width: 520px; }
+.readout { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.readout > div { min-width: 0; display: grid; gap: 4px; }
+.lbl { font: 500 .7rem/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.big { font: 500 1.15rem/1.4 var(--mono); overflow-wrap: anywhere; }
+.asr { font: 600 1.35rem/1.35 var(--display); overflow-wrap: anywhere; }
+.diff .x { color: var(--bad); text-decoration: underline wavy; }
+.pill { display: inline-block; font: 500 .75rem/1 var(--mono); padding: 5px 8px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+.pill.good { color: var(--good); background: color-mix(in srgb, var(--good) 14%, transparent); }
+.pill.bad { color: var(--bad); background: color-mix(in srgb, var(--bad) 14%, transparent); }
+.note { font-size: .85rem; color: var(--muted); }
+
+/* word analysis */
+.ana { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 28px; align-items: start; }
+@media (max-width: 760px) { .ana { grid-template-columns: 1fr; } }
+.wordin { font: 700 2rem/1.2 var(--display); width: 100%; background: transparent; color: var(--ink); border: none; border-bottom: 2px solid var(--line); padding: 4px 0 8px; }
+.wordin:focus { outline: none; border-color: var(--accent); }
+.syl { display: flex; flex-wrap: wrap; gap: 4px; }
+.syl span { font: 500 1.05rem var(--mono); padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px; }
+.syl span.st { border-color: var(--accent); color: var(--accent); }
+.kv { display: grid; gap: 14px; }
+.tblwrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 500 .7rem/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+td.form { font: 600 1.1rem var(--display); }
+td.form em { font-style: normal; color: var(--accent); }
+td .sakha { font-family: var(--mono); font-size: .8rem; color: var(--muted); }
+
+/* pipeline */
+.pipe { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px 18px; counter-reset: s; }
+@media (max-width: 760px) { .pipe { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 460px) { .pipe { grid-template-columns: 1fr; } }
+.pipe li { display: grid; gap: 6px; padding-top: 12px; border-top: 2px solid var(--line); counter-increment: s; min-width: 0; }
+.pipe li::before { content: counter(s); font: 500 .75rem var(--mono); color: var(--accent); }
+.pipe li p { font-size: .92rem; color: var(--muted); }
+
+/* results */
+.metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.metric { padding: 16px 16px 16px 0; display: grid; gap: 4px; }
+.metric + .metric { border-left: 1px solid var(--line); padding-left: 16px; }
+@media (max-width: 640px) { .metric + .metric { border-left: none; padding-left: 0; border-top: 1px solid var(--line); } }
+.metric .v { font: 700 2.4rem/1 var(--display); font-variant-numeric: tabular-nums; }
+.metric .v small { font: 500 .9rem var(--mono); color: var(--muted); margin-left: 6px; }
+.chartbox { overflow-x: auto; }
+svg text { fill: var(--muted); font: 11px var(--mono); }
+.ex td { font-family: var(--mono); font-size: .88rem; }
+.ex td.ok { color: var(--good); }
+.foot { font-size: .85rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 18px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<main class="wrap">
+  <header class="hero">
+    <span class="eyebrow">пет-проект · речевые технологии · саха тыла</span>
+    <h1>Саҥа<span class="ipa">/saˈŋa/ - «голос, речь»</span></h1>
+    <p class="lede">Якутская речь, собранная с нуля: правила фонетики и морфологии, формантный синтезатор и нейросеть распознавания, обученная только на синтетических голосах. Всё на numpy, без готовых моделей и датасетов. Здесь синтезатор и распознаватель работают прямо в браузере.</p>
+  </header>
+
+  <section aria-labelledby="studio-h">
+    <h2 id="studio-h">Студия</h2>
+    <div class="studio">
+      <label for="txt" class="lbl">Текст на якутском</label>
+      <input id="txt" class="textin" value="эһэ тайҕаҕа сүүрдэ" autocomplete="off" spellcheck="false">
+      <div class="chips" id="examples" aria-label="Примеры фраз"></div>
+      <div class="row" style="justify-content:space-between">
+        <div class="chips" id="presets" aria-label="Голос"></div>
+      </div>
+      <div class="sliders">
+        <label class="sl" for="f0"><span>Основной тон <b id="f0v"></b></span><input id="f0" type="range" min="70" max="320" step="1"></label>
+        <label class="sl" for="vtl"><span>Масштаб формант <b id="vtlv"></b></span><input id="vtl" type="range" min="0.82" max="1.4" step="0.01"></label>
+        <label class="sl" for="tempo"><span>Темп <b id="tempov"></b></span><input id="tempo" type="range" min="0.6" max="1.5" step="0.01"></label>
+        <label class="sl" for="snr"><span>Шум (SNR) <b id="snrv"></b></span><input id="snr" type="range" min="0" max="60" step="1" value="60"></label>
+      </div>
+      <div class="row">
+        <button class="btn" id="play">▶ Произнести</button>
+        <button class="btn ghost" id="rec">Распознать</button>
+        <span class="note" id="status"></span>
+      </div>
+      <div class="specbox"><canvas id="spec" width="1200" height="240" aria-label="Спектрограмма синтезированной речи с фонемами"></canvas></div>
+      <div class="readout">
+        <div><span class="lbl">МФА</span><span class="big" id="ipa"></span></div>
+        <div><span class="lbl">Распознано моделью</span><span class="asr" id="asr">-</span><span id="cer"></span></div>
+      </div>
+    </div>
+    <p class="note">Над спектрограммой подписаны фонемы и их границы, внизу оранжевыми засечками - кадры, где CTC-модель выдала букву. Двиньте шум влево, чтобы посмотреть, когда распознавание начнёт ошибаться.</p>
+  </section>
+
+  <section aria-labelledby="ana-h">
+    <h2 id="ana-h">Разбор слова</h2>
+    <div class="ana">
+      <div class="kv">
+        <label for="word" class="lbl">Основа существительного</label>
+        <input id="word" class="wordin" value="балык" autocomplete="off" spellcheck="false">
+        <div class="chips" id="wex"></div>
+        <div><span class="lbl">Слоги и ударение</span><div class="syl" id="syl"></div></div>
+        <div><span class="lbl">МФА</span><div class="big" id="wipa"></div></div>
+        <div><span class="lbl">Сингармонизм</span><div id="harm"></div></div>
+      </div>
+      <div class="tblwrap">
+        <table>
+          <thead><tr><th>Форма</th><th>Падеж</th><th>Что сработало</th></tr></thead>
+          <tbody id="par"></tbody>
+        </table>
+      </div>
+    </div>
+    <p class="note">Аффиксы выбирают гласную по последней гласной основы (4 варианта: а/э/о/ө или ы/и/у/ү), а начальный согласный аффикса подстраивается под конец основы: ат → акка, күн → күҥҥэ, балык → балыгы.</p>
+  </section>
+
+  <section aria-labelledby="how-h">
+    <h2 id="how-h">Как это устроено</h2>
+    <ol class="pipe">
+      <li><h3>Правила языка</h3><p>G2P для якутской орфографии: долгие гласные, дифтонги ыа/иэ/уо/үө, ҕ ҥ һ, дь/нь. Слоги, ударение на последнем слоге, проверка гармонии.</p></li>
+      <li><h3>Морфология</h3><p>Генератор словоформ: мн. число, дательный, винительный, исходный падеж, прошедшее время. Правила работают и для любой новой основы.</p></li>
+      <li><h3>Синтез</h3><p>Глоттальный импульс Розенберга, каскад из 5 формантных резонаторов, шумовая ветвь для фрикативных, взрывы смычных, дрожащее р, деклинация тона.</p></li>
+      <li><h3>Виртуальные дикторы</h3><p>Каждая фраза звучит новым голосом: тон, длина тракта, темп, придыхание, джиттер. Плюс шум, реверберация и телефонная полоса.</p></li>
+      <li><h3>Псевдослова</h3><p>Половина обучающих фраз состоит из несуществующих слов, собранных по слоговой структуре и гармонии якутского, со всеми падежами.</p></li>
+      <li><h3>CTC на numpy</h3><p>Свёрточная сеть с dilation и residual-блоками, CTC-loss и Adam написаны вручную; производные сверены численно.</p></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="res-h">
+    <h2 id="res-h">Обучение</h2>
+    <p id="res-intro" class="muted"></p>
+    <div class="metrics" id="metrics"></div>
+    <div class="tblwrap" id="cmpwrap" hidden>
+      <table><thead><tr><th>Набор</th><th>Только словарь</th><th>Словарь + псевдослова</th></tr></thead><tbody id="cmp"></tbody></table>
+    </div>
+    <p class="note" id="cmpnote" hidden>Первая модель училась только на ~90 настоящих основах и в основном запомнила их: на знакомых словах она почти безупречна, а незнакомые искажает. Во второй модели половина фраз собрана из несуществующих, но фонотактически правильных слов (слоги по правилам якутского, гармония гласных, настоящие падежные аффиксы). Сеть вынуждена слушать звуки, а не узнавать слова.</p>
+    <div class="chartbox" id="curve"></div>
+    <h3>Что слышит модель</h3>
+    <div class="tblwrap"><table class="ex"><thead><tr><th>Эталон</th><th>Распознано</th></tr></thead><tbody id="ex"></tbody></table></div>
+  </section>
+
+  <section aria-labelledby="lim-h">
+    <h2 id="lim-h">Границы и следующий шаг</h2>
+    <p>Модель ни разу не слышала живого человека, поэтому на настоящей якутской речи она работать не будет: формантный голос гораздо беднее живого. Проект показывает другое: весь конвейер для малоресурсного языка можно собрать из лингвистических знаний, и он обобщается на новых дикторов и на слова, которых не было в обучении.</p>
+    <p>Следующий шаг: дообучить ту же сеть на якутской части Mozilla Common Voice, использовать синтетику как предобучение и сравнить с обучением с нуля. Вторая идея: заменить формантный синтез на нейросетевой вокодер, обученный на тех же правилах G2P.</p>
+  </section>
+
+  <footer class="foot">Код: Python (numpy, scipy) и порт на JavaScript для этой страницы. Морфологические правила упрощены и покрывают основные типы основ; редкие исключения не учтены.</footer>
+</main>
+
+<script>/*BP_TABLE*/</script>
+<script>/*WEIGHTS*/</script>
+<script>/*SANA_JS*/</script>
+<script>
+const RESULTS = /*RESULTS*/null;
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+  const PRESETS = {
+    "Мужской": { f0: 112, vtl: 0.95, tempo: 1.0, breath: 0.04, tilt: 0.2 },
+    "Женский": { f0: 205, vtl: 1.15, tempo: 1.05, breath: 0.07, tilt: 0.3 },
+    "Детский": { f0: 270, vtl: 1.3, tempo: 1.1, breath: 0.06, tilt: 0.2 },
+    "Медленно": { f0: 98, vtl: 0.92, tempo: 0.72, breath: 0.03, tilt: 0.1 },
+  };
+  const EXAMPLES = ["эһэ тайҕаҕа сүүрдэ", "дорообо", "саха тыла", "оҕолор оскуолаҕа бардылар", "мин хомусу көрдүм", "үс кыыс", "кэрэ чыычаах ыллаата"];
+  let voice = Object.assign({}, PRESETS["Мужской"]), last = null, ctx = null;
+
+  function chip(container, label, onClick, pressed) {
+    const b = document.createElement("button"); b.className = "chip"; b.type = "button"; b.textContent = label;
+    if (pressed !== undefined) b.setAttribute("aria-pressed", pressed); b.onclick = () => onClick(b); container.appendChild(b); return b;
+  }
+  EXAMPLES.forEach((e) => chip($("examples"), e, () => { $("txt").value = e; run(true); }));
+  Object.keys(PRESETS).forEach((k, i) => chip($("presets"), k, (b) => {
+    voice = Object.assign({}, PRESETS[k]); [...$("presets").children].forEach((c) => c.setAttribute("aria-pressed", c === b)); syncSliders(); run(true);
+  }, i === 0));
+
+  function syncSliders() { $("f0").value = voice.f0; $("vtl").value = voice.vtl; $("tempo").value = voice.tempo; labels(); }
+  function labels() { $("f0v").textContent = Math.round($("f0").value) + " Гц"; $("vtlv").textContent = (+$("vtl").value).toFixed(2) + "×"; $("tempov").textContent = (+$("tempo").value).toFixed(2) + "×"; const s = +$("snr").value; $("snrv").textContent = s >= 60 ? "без шума" : s + " дБ"; }
+  ["f0", "vtl", "tempo", "snr"].forEach((id) => { $(id).oninput = labels; $(id).onchange = () => { voice.f0 = +$("f0").value; voice.vtl = +$("vtl").value; voice.tempo = +$("tempo").value; run(false); }; });
+  $("txt").addEventListener("keydown", (e) => { if (e.key === "Enter") run(true); });
+  $("txt").addEventListener("change", () => run(false));
+
+  function render() {
+    const text = $("txt").value;
+    const spk = Object.assign({ seed: 7, pause: 0.03 }, voice);
+    const r = Sana.synthesize(text, spk, { tracks: true });
+    const y = Sana.addNoise(r.y, +$("snr").value, 11);
+    last = { text, y, segs: r.segs, asr: null };
+    $("ipa").textContent = Sana.toIPA(text) || "-";
+    $("asr").textContent = "-"; $("cer").innerHTML = "";
+    draw();
+    return last;
+  }
+  function play() {
+    try {
+      ctx = ctx || new (window.AudioContext || window.webkitAudioContext)();
+      const buf = ctx.createBuffer(1, last.y.length, Sana.SR); buf.copyToChannel(last.y, 0);
+      const src = ctx.createBufferSource(); src.buffer = buf; src.connect(ctx.destination); src.start();
+    } catch (e) { $("status").textContent = "Браузер не дал воспроизвести звук."; }
+  }
+  function run(withSound) { render(); if (withSound) play(); }
+  $("play").onclick = () => run(true);
+  $("rec").onclick = () => {
+    if (!last || last.text !== $("txt").value) render();
+    $("rec").disabled = true; $("status").textContent = "распознаю…";
+    setTimeout(() => {
+      const t0 = performance.now(); const r = Sana.recognize(last.y); const ms = performance.now() - t0;
+      $("rec").disabled = false;
+      if (!r) { $("status").textContent = "Модель не загружена."; return; }
+      last.asr = r; $("status").textContent = `${Math.round(ms)} мс на CPU браузера`;
+      const ref = Sana.normalize(last.text), hyp = r.text;
+      const ed = lev([...ref], [...hyp]); const cer = ref.length ? ed / ref.length : 0;
+      $("asr").innerHTML = diffHtml(ref, hyp);
+      $("cer").innerHTML = `<span class="pill ${cer === 0 ? "good" : cer < 0.15 ? "" : "bad"}">CER ${(cer * 100).toFixed(1)}%</span>`;
+      draw();
+    }, 20);
+  };
+
+  function lev(a, b) { const d = Array.from({ length: b.length + 1 }, (_, j) => j); for (let i = 1; i <= a.length; i++) { let p = d[0]; d[0] = i; for (let j = 1; j <= b.length; j++) { const t = d[j]; d[j] = Math.min(d[j] + 1, d[j - 1] + 1, p + (a[i - 1] !== b[j - 1])); p = t; } } return d[b.length]; }
+  function diffHtml(ref, hyp) { // подсветка символов гипотезы, не совпавших по выравниванию
+    const a = [...ref], b = [...hyp]; const D = Array.from({ length: a.length + 1 }, () => new Array(b.length + 1).fill(0));
+    for (let i = 0; i <= a.length; i++) D[i][0] = i; for (let j = 0; j <= b.length; j++) D[0][j] = j;
+    for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++) D[i][j] = Math.min(D[i - 1][j] + 1, D[i][j - 1] + 1, D[i - 1][j - 1] + (a[i - 1] !== b[j - 1]));
+    let i = a.length, j = b.length; const ok = new Array(b.length).fill(false);
+    while (i > 0 && j > 0) { if (D[i][j] === D[i - 1][j - 1] + (a[i - 1] !== b[j - 1])) { ok[j - 1] = a[i - 1] === b[j - 1]; i--; j--; } else if (D[i][j] === D[i - 1][j] + 1) i--; else j--; }
+    const esc = (c) => c.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+    return b.length ? `<span class="diff">${b.map((c, k) => ok[k] ? esc(c) : `<span class="x">${c === " " ? "␣" : esc(c)}</span>`).join("")}</span>` : "<span class='muted'>(пусто)</span>";
+  }
+
+  function hexToRgb(h) { h = h.replace("#", ""); if (h.length === 3) h = [...h].map((c) => c + c).join(""); const n = parseInt(h, 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+  function cmap() { const stops = ["--spec0", "--spec1", "--spec2", "--spec3", "--spec4"].map((v) => hexToRgb(css(v))); const lut = []; for (let i = 0; i < 256; i++) { const x = i / 255 * 4, k = Math.min(3, Math.floor(x)), t = x - k; lut.push(stops[k].map((c, j) => Math.round(c * (1 - t) + stops[k + 1][j] * t))); } return lut; }
+
+  function draw() {
+    if (!last) return;
+    const cv = $("spec"), g = cv.getContext("2d"); const W = cv.width, H = cv.height, top = 26, bot = 18, sh = H - top - bot;
+    g.fillStyle = css("--spec0"); g.fillRect(0, 0, W, H);
+    const S = Sana.spectrogram(last.y); const T = S.length, nb = S[0].length; const fmaxBin = Math.floor(nb * 7000 / 8000);
+    let mx = -1e9; S.forEach((r) => r.forEach((v) => { if (v > mx) mx = v; }));
+    const lut = cmap(); const img = g.createImageData(W, sh);
+    for (let x = 0; x < W; x++) { const t = Math.min(T - 1, Math.floor(x / W * T)); for (let yy = 0; yy < sh; yy++) { const b = Math.floor((1 - yy / sh) * fmaxBin); const v = Math.max(0, Math.min(1, (S[t][b] - (mx - 70)) / 70)); const c = lut[Math.floor(Math.pow(v, 1.4) * 255)]; const o = (yy * W + x) * 4; img.data[o] = c[0]; img.data[o + 1] = c[1]; img.data[o + 2] = c[2]; img.data[o + 3] = 255; } }
+    g.putImageData(img, 0, top);
+    const n = last.y.length, toX = (s) => s / n * W;
+    g.font = "13px " + css("--mono"); g.textAlign = "center"; let s0 = 0;
+    for (const sg of last.segs) {
+      const len = Math.max(1, Math.round(sg.dur / (80 / 16000))) * 80;
+      if (sg.label && sg.label !== "_" && sg.kind !== "release" && sg.kind !== "asp" || (sg.kind === "asp" && sg.label === "h")) {
+        g.fillStyle = css("--line"); g.fillRect(toX(s0), top, 1, sh);
+        g.fillStyle = sg.kind === "vowel" ? css("--accent") : css("--ink"); g.fillText(sg.label.replace("ˈ", ""), toX(s0 + len / 2), 17);
+      }
+      s0 += len;
+    }
+    g.fillStyle = css("--muted"); g.textAlign = "left"; g.font = "11px " + css("--mono");
+    [1000, 3000, 5000, 7000].forEach((f) => { const yy = top + sh * (1 - f / 7000); g.fillText(f / 1000 + " кГц", 4, Math.max(top + 10, yy + 10)); });
+    if (last.asr) {
+      g.fillStyle = css("--accent"); g.textAlign = "center";
+      for (const a of last.asr.align) { const x = toX((a.t * 2 + 1) * 160); g.fillRect(x - 1, H - bot + 2, 2, 6); g.fillText(a.ch === " " ? "␣" : a.ch, x, H - 2); }
+    }
+  }
+  matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", draw);
+  new MutationObserver(draw).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+  // ---------------- разбор слова
+  const CASES = [["nom", "Именительный", "ааттыыр"], ["pl", "Мн. число", "элбэх ахсаан"], ["dat", "Дательный", "сыһыарыы"], ["acc", "Винительный", "туохтуур"], ["abl", "Исходный", "таһаарыы"]];
+  ["оҕо", "ат", "күн", "дьиэ", "бөрө", "ынах", "суол", "кыыс"].forEach((w) => chip($("wex"), w, () => { $("word").value = w; analyze(); }));
+  function why(stem, key, form) {
+    const sv = Sana.suffixVowel(stem, key === "acc"); const last = stem.at(-1); const vowelEnd = "аыоуэиөү".includes(last);
+    if (key === "nom") return "основа";
+    if (form.length < stem.length || !form.startsWith(stem.slice(0, -1))) return "исключение";
+    const parts = [`гласная аффикса «${sv}»`];
+    if (key === "dat") parts.push(vowelEnd ? "после гласной -ҕ-" : last === "н" ? "н+ҕ → ҥҥ" : "тп".includes(last) ? `${last}+к → кк` : "кпсхчф".includes(last) ? "после глухого" : "после сонорного -г-");
+    if (key === "pl") parts.push(vowelEnd || last === "л" ? "-л-" : "рй".includes(last) ? "-д- после р/й" : "мнҥ".includes(last) ? "-н- после носового" : "-т- после глухого");
+    if (key === "acc" && !vowelEnd && "кхп".includes(last)) parts.push(`озвончение ${last}→${({ к: "г", х: "ҕ", п: "б" })[last]}`);
+    if (key === "acc" && vowelEnd) parts.push("-н- после гласной");
+    if (key === "abl") parts.push(vowelEnd ? "-тт- после гласной" : "-т-");
+    return parts.join(" · ");
+  }
+  function analyze() {
+    const w = Sana.normalize($("word").value).split(" ")[0] || "";
+    const syl = Sana.syllabify(w); $("syl").innerHTML = syl.map((s, i) => `<span class="${i === syl.length - 1 ? "st" : ""}">${i === syl.length - 1 ? "ˈ" : ""}${s}</span>`).join("");
+    $("wipa").textContent = w ? "/" + Sana.toIPA(w) + "/" : "";
+    const bad = Sana.harmonyViolations(w);
+    $("harm").innerHTML = !w ? "" : bad.length ? bad.map((b) => `<span class="pill bad">${b[0]} → ${b[1]}: нарушен ${b[2] === "ряд" ? "ряд" : "закон огублённости"}</span>`).join(" ") + ` <span class="note">похоже на заимствование или опечатку</span>` : `<span class="pill good">гласные гармонируют</span>`;
+    if (!w) { $("par").innerHTML = ""; return; }
+    const p = Sana.paradigm(w);
+    $("par").innerHTML = CASES.map(([k, ru, sa]) => { const f = p[k]; const common = k === "nom" ? f.length : [...f].findIndex((c, i) => c !== w[i]); const cut = common < 0 ? Math.min(f.length, w.length) : common; return `<tr><td class="form">${f.slice(0, cut)}<em>${f.slice(cut)}</em></td><td>${ru}<br><span class="sakha">${sa}</span></td><td class="note">${why(w, k, f)}</td></tr>`; }).join("");
+  }
+  $("word").addEventListener("input", analyze);
+
+  // ---------------- результаты
+  function results() {
+    if (!RESULTS) { $("res-intro").textContent = "Результаты обучения не подключены."; return; }
+    const R = RESULTS.results;
+    $("res-intro").textContent = `${RESULTS.n_train.toLocaleString("ru")} синтетических фраз (${RESULTS.train_hours.toFixed(1)} ч речи, у каждой свой диктор), ${(RESULTS.params / 1e6).toFixed(2)} млн параметров, обучение на двух ядрах CPU за ${Math.round(RESULTS.log.at(-1).minutes)} мин. Все тестовые дикторы новые.`;
+    const M = [["seen_words", "Знакомые слова", "новые дикторы, шум и эхо"], ["unseen_words", "Незнакомые слова", "лексемы, которых не было в обучении"], ["clean", "Чистая запись", "новые дикторы без шума"]];
+    $("metrics").innerHTML = M.map(([k, t, d]) => `<div class="metric"><span class="lbl">${t}</span><span class="v">${(R[k].cer * 100).toFixed(1)}%<small>CER</small></span><span class="note">WER ${(R[k].wer * 100).toFixed(1)}% · ${d}</span></div>`).join("");
+    if (RESULTS.baseline) {
+      const B = RESULTS.baseline; $("cmpwrap").hidden = false; $("cmpnote").hidden = false;
+      $("cmp").innerHTML = M.map(([k, t]) => `<tr><td>${t}</td><td class="mono">CER ${(B[k].cer * 100).toFixed(1)}% · WER ${(B[k].wer * 100).toFixed(1)}%</td><td class="mono"><b>CER ${(R[k].cer * 100).toFixed(1)}% · WER ${(R[k].wer * 100).toFixed(1)}%</b></td></tr>`).join("");
+    }
+    const ex = [...R.unseen_words.examples.slice(0, 6), ...R.seen_words.examples.slice(0, 4)];
+    $("ex").innerHTML = ex.map(([r, h]) => `<tr><td>${r}</td><td class="${r === h ? "ok" : ""}">${diffHtml(r, h)}</td></tr>`).join("");
+    // кривая обучения
+    const L = RESULTS.log, w = 760, h = 220, pl = 46, pr = 46, pt = 14, pb = 30;
+    const xs = (i) => pl + (L.length === 1 ? 0 : i / (L.length - 1)) * (w - pl - pr);
+    const lmax = Math.max(...L.map((r) => r.loss)), cmax = Math.max(...L.map((r) => r.val_cer));
+    const yl = (v) => pt + (1 - v / lmax) * (h - pt - pb), yc = (v) => pt + (1 - v / Math.max(cmax, 0.05)) * (h - pt - pb);
+    const path = (f, k) => L.map((r, i) => `${i ? "L" : "M"}${xs(i).toFixed(1)},${f(r[k]).toFixed(1)}`).join("");
+    let grid = ""; for (let q = 0; q <= 4; q++) { const yy = pt + q / 4 * (h - pt - pb); grid += `<line x1="${pl}" x2="${w - pr}" y1="${yy}" y2="${yy}" stroke="var(--line)"/><text x="${pl - 6}" y="${yy + 4}" text-anchor="end">${(lmax * (1 - q / 4)).toFixed(0)}</text><text x="${w - pr + 6}" y="${yy + 4}">${(Math.max(cmax, .05) * (1 - q / 4) * 100).toFixed(0)}%</text>`; }
+    const ticks = L.map((r, i) => (i % Math.ceil(L.length / 8) === 0 || i === L.length - 1) ? `<text x="${xs(i)}" y="${h - 10}" text-anchor="middle">${r.epoch + 1}</text>` : "").join("");
+    $("curve").innerHTML = `<svg viewBox="0 0 ${w} ${h}" width="100%" style="min-width:520px" role="img" aria-label="Кривая обучения: CTC-loss и CER по эпохам">${grid}${ticks}
+      <path d="${path(yl, "loss")}" fill="none" stroke="var(--ice)" stroke-width="2"/>
+      <path d="${path(yc, "val_cer")}" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+      <circle cx="${xs(L.length - 1)}" cy="${yc(L.at(-1).val_cer)}" r="4" fill="var(--accent)"/>
+      <text x="${pl}" y="${pt - 2}" style="fill:var(--ice)">CTC-loss</text><text x="${w - pr}" y="${pt - 2}" text-anchor="end" style="fill:var(--accent)">CER на валидации</text>
+      <text x="${(w) / 2}" y="${h}" text-anchor="middle">эпоха</text></svg>`;
+  }
+
+  syncSliders(); render(); analyze(); results();
+})();
+</script>

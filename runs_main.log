@@ -1,0 +1,284 @@
+built data/train_16000.pkl: 16000 utts in 308s
+built data/test_seen.pkl: 500 utts in 10s
+built data/test_unseen.pkl: 500 utts in 11s
+built data/test_clean.pkl: 300 utts in 4s
+train hours: 5.15
+params: 1714471
+ep 0 step 50 loss 74.599 lr 0.00025 0.1min
+ep 0 step 100 loss 24.747 lr 0.00050 0.2min
+ep 0 step 150 loss 15.876 lr 0.00075 0.4min
+ep 0 step 200 loss 13.180 lr 0.00100 0.5min
+ep 0 step 250 loss 10.616 lr 0.00125 0.6min
+ep 0 step 300 loss 9.076 lr 0.00150 0.7min
+ep 0 step 350 loss 8.203 lr 0.00150 0.8min
+ep 0 step 400 loss 7.341 lr 0.00150 0.9min
+ep 0 step 450 loss 7.016 lr 0.00150 1.1min
+ep 0 step 500 loss 6.399 lr 0.00149 1.2min
+{'epoch': 0, 'loss': 17.705245425236182, 'val_cer': 0.06607369758576874, 'val_wer': 0.2708333333333333, 'minutes': 1.1934637586275736} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уойда')]
+ep 1 step 550 loss 5.229 lr 0.00149 1.3min
+ep 1 step 600 loss 5.146 lr 0.00149 1.5min
+ep 1 step 650 loss 4.789 lr 0.00149 1.6min
+ep 1 step 700 loss 4.345 lr 0.00149 1.8min
+ep 1 step 750 loss 4.017 lr 0.00149 1.9min
+ep 1 step 800 loss 4.212 lr 0.00148 2.0min
+ep 1 step 850 loss 3.687 lr 0.00148 2.1min
+ep 1 step 900 loss 3.440 lr 0.00148 2.2min
+ep 1 step 950 loss 3.500 lr 0.00148 2.3min
+ep 1 step 1000 loss 3.366 lr 0.00148 2.4min
+{'epoch': 1, 'loss': 4.173087127882013, 'val_cer': 0.024989411266412537, 'val_wer': 0.12037037037037036, 'minutes': 2.4537861545880637} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уойлга')]
+ep 2 step 1050 loss 3.084 lr 0.00147 2.6min
+ep 2 step 1100 loss 3.137 lr 0.00147 2.7min
+ep 2 step 1150 loss 2.720 lr 0.00147 2.8min
+ep 2 step 1200 loss 2.761 lr 0.00147 2.9min
+ep 2 step 1250 loss 2.934 lr 0.00146 3.0min
+ep 2 step 1300 loss 2.620 lr 0.00146 3.2min
+ep 2 step 1350 loss 2.492 lr 0.00146 3.3min
+ep 2 step 1400 loss 2.488 lr 0.00145 3.4min
+ep 2 step 1450 loss 2.356 lr 0.00145 3.5min
+ep 2 step 1500 loss 2.555 lr 0.00145 3.6min
+{'epoch': 2, 'loss': 2.7148640630704333, 'val_cer': 0.01397712833545108, 'val_wer': 0.07175925925925926, 'minutes': 3.6285375316937762} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уолга')]
+ep 3 step 1550 loss 2.045 lr 0.00144 3.7min
+ep 3 step 1600 loss 2.186 lr 0.00144 3.9min
+ep 3 step 1650 loss 2.134 lr 0.00144 4.0min
+ep 3 step 1700 loss 2.046 lr 0.00143 4.1min
+ep 3 step 1750 loss 2.101 lr 0.00143 4.2min
+ep 3 step 1800 loss 1.958 lr 0.00142 4.3min
+ep 3 step 1850 loss 1.994 lr 0.00142 4.5min
+ep 3 step 1900 loss 1.809 lr 0.00142 4.6min
+ep 3 step 1950 loss 1.835 lr 0.00141 4.7min
+ep 3 step 2000 loss 1.883 lr 0.00141 4.8min
+{'epoch': 3, 'loss': 1.999117403547514, 'val_cer': 0.013553578991952562, 'val_wer': 0.07175925925925926, 'minutes': 4.7940517584482825} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уолга')]
+ep 4 step 2050 loss 1.808 lr 0.00140 4.9min
+ep 4 step 2100 loss 1.730 lr 0.00140 5.0min
+ep 4 step 2150 loss 1.698 lr 0.00139 5.1min
+ep 4 step 2200 loss 1.677 lr 0.00139 5.2min
+ep 4 step 2250 loss 1.662 lr 0.00138 5.4min
+ep 4 step 2300 loss 1.719 lr 0.00138 5.5min
+ep 4 step 2350 loss 1.716 lr 0.00137 5.6min
+ep 4 step 2400 loss 1.431 lr 0.00137 5.7min
+ep 4 step 2450 loss 1.835 lr 0.00136 5.8min
+ep 4 step 2500 loss 1.601 lr 0.00136 5.9min
+{'epoch': 4, 'loss': 1.6878072373959883, 'val_cer': 0.010165184243964422, 'val_wer': 0.04398148148148148, 'minutes': 5.939391068617502} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уолга')]
+ep 5 step 2550 loss 1.451 lr 0.00135 6.1min
+ep 5 step 2600 loss 1.622 lr 0.00135 6.2min
+ep 5 step 2650 loss 1.349 lr 0.00134 6.3min
+ep 5 step 2700 loss 1.609 lr 0.00133 6.4min
+ep 5 step 2750 loss 1.557 lr 0.00133 6.5min
+ep 5 step 2800 loss 1.578 lr 0.00132 6.6min
+ep 5 step 2850 loss 1.453 lr 0.00132 6.7min
+ep 5 step 2900 loss 1.438 lr 0.00131 6.9min
+ep 5 step 2950 loss 1.431 lr 0.00130 7.0min
+ep 5 step 3000 loss 1.204 lr 0.00130 7.1min
+{'epoch': 5, 'loss': 1.4693005687573921, 'val_cer': 0.008894536213468869, 'val_wer': 0.04398148148148148, 'minutes': 7.092255854606629} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уолга')]
+ep 6 step 3050 loss 1.321 lr 0.00129 7.2min
+ep 6 step 3100 loss 1.194 lr 0.00128 7.3min
+ep 6 step 3150 loss 1.389 lr 0.00128 7.4min
+ep 6 step 3200 loss 1.200 lr 0.00127 7.6min
+ep 6 step 3250 loss 1.198 lr 0.00126 7.7min
+ep 6 step 3300 loss 1.170 lr 0.00126 7.8min
+ep 6 step 3350 loss 1.156 lr 0.00125 7.9min
+ep 6 step 3400 loss 1.243 lr 0.00124 8.0min
+ep 6 step 3450 loss 1.185 lr 0.00124 8.1min
+ep 6 step 3500 loss 1.158 lr 0.00123 8.3min
+{'epoch': 6, 'loss': 1.2213681581927909, 'val_cer': 0.005082592121982211, 'val_wer': 0.027777777777777776, 'minutes': 8.261449444293977} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уолга')]
+ep 7 step 3550 loss 1.119 lr 0.00122 8.4min
+ep 7 step 3600 loss 1.079 lr 0.00121 8.5min
+ep 7 step 3650 loss 1.148 lr 0.00121 8.6min
+ep 7 step 3700 loss 1.103 lr 0.00120 8.7min
+ep 7 step 3750 loss 1.119 lr 0.00119 8.9min
+ep 7 step 3800 loss 1.019 lr 0.00118 9.0min
+ep 7 step 3850 loss 1.068 lr 0.00118 9.1min
+ep 7 step 3900 loss 1.020 lr 0.00117 9.2min
+ep 7 step 3950 loss 1.203 lr 0.00116 9.3min
+ep 7 step 4000 loss 0.948 lr 0.00115 9.4min
+{'epoch': 7, 'loss': 1.0825857469175049, 'val_cer': 0.007200338839474798, 'val_wer': 0.034722222222222224, 'minutes': 9.43765560388565} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уолга')]
+ep 8 step 4050 loss 0.908 lr 0.00114 9.6min
+ep 8 step 4100 loss 1.041 lr 0.00114 9.7min
+ep 8 step 4150 loss 0.893 lr 0.00113 9.8min
+ep 8 step 4200 loss 1.012 lr 0.00112 9.9min
+ep 8 step 4250 loss 1.000 lr 0.00111 10.0min
+ep 8 step 4300 loss 1.004 lr 0.00110 10.1min
+ep 8 step 4350 loss 0.898 lr 0.00109 10.2min
+ep 8 step 4400 loss 0.861 lr 0.00109 10.3min
+ep 8 step 4450 loss 0.929 lr 0.00108 10.5min
+ep 8 step 4500 loss 1.002 lr 0.00107 10.6min
+{'epoch': 8, 'loss': 0.9548504568926434, 'val_cer': 0.005929690808979246, 'val_wer': 0.027777777777777776, 'minutes': 10.573681120077769} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уолга')]
+ep 9 step 4550 loss 0.853 lr 0.00106 10.7min
+ep 9 step 4600 loss 0.764 lr 0.00105 10.8min
+ep 9 step 4650 loss 0.832 lr 0.00104 10.9min
+ep 9 step 4700 loss 0.808 lr 0.00104 11.0min
+ep 9 step 4750 loss 0.852 lr 0.00103 11.1min
+ep 9 step 4800 loss 0.918 lr 0.00102 11.3min
+ep 9 step 4850 loss 0.797 lr 0.00101 11.4min
+ep 9 step 4900 loss 0.839 lr 0.00100 11.5min
+ep 9 step 4950 loss 0.817 lr 0.00099 11.6min
+ep 9 step 5000 loss 0.753 lr 0.00098 11.7min
+{'epoch': 9, 'loss': 0.8232651969774334, 'val_cer': 0.004235493434985175, 'val_wer': 0.023148148148148147, 'minutes': 11.68996090888977} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уолга')]
+ep 10 step 5050 loss 0.810 lr 0.00097 11.8min
+ep 10 step 5100 loss 0.798 lr 0.00096 11.9min
+ep 10 step 5150 loss 0.730 lr 0.00095 12.0min
+ep 10 step 5200 loss 0.742 lr 0.00095 12.2min
+ep 10 step 5250 loss 0.682 lr 0.00094 12.3min
+ep 10 step 5300 loss 0.750 lr 0.00093 12.4min
+ep 10 step 5350 loss 0.745 lr 0.00092 12.5min
+ep 10 step 5400 loss 0.680 lr 0.00091 12.6min
+ep 10 step 5450 loss 0.692 lr 0.00090 12.7min
+ep 10 step 5500 loss 0.774 lr 0.00089 12.8min
+{'epoch': 10, 'loss': 0.7401321952495193, 'val_cer': 0.004235493434985175, 'val_wer': 0.020833333333333332, 'minutes': 12.844828395048777} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уолга')]
+ep 11 step 5550 loss 0.688 lr 0.00088 13.0min
+ep 11 step 5600 loss 0.783 lr 0.00087 13.1min
+ep 11 step 5650 loss 0.711 lr 0.00086 13.2min
+ep 11 step 5700 loss 0.635 lr 0.00085 13.3min
+ep 11 step 5750 loss 0.776 lr 0.00084 13.4min
+ep 11 step 5800 loss 0.729 lr 0.00083 13.5min
+ep 11 step 5850 loss 0.670 lr 0.00083 13.7min
+ep 11 step 5900 loss 0.684 lr 0.00082 13.8min
+ep 11 step 5950 loss 0.750 lr 0.00081 13.9min
+ep 11 step 6000 loss 0.636 lr 0.00080 14.0min
+{'epoch': 11, 'loss': 0.7061125642025017, 'val_cer': 0.0033883947479881405, 'val_wer': 0.016203703703703703, 'minutes': 13.991432245572408} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уолга')]
+ep 12 step 6050 loss 0.561 lr 0.00079 14.1min
+ep 12 step 6100 loss 0.642 lr 0.00078 14.2min
+ep 12 step 6150 loss 0.689 lr 0.00077 14.3min
+ep 12 step 6200 loss 0.661 lr 0.00076 14.4min
+ep 12 step 6250 loss 0.662 lr 0.00075 14.6min
+ep 12 step 6300 loss 0.548 lr 0.00074 14.7min
+ep 12 step 6350 loss 0.605 lr 0.00073 14.8min
+ep 12 step 6400 loss 0.525 lr 0.00072 14.9min
+ep 12 step 6450 loss 0.631 lr 0.00071 15.0min
+ep 12 step 6500 loss 0.710 lr 0.00070 15.1min
+{'epoch': 12, 'loss': 0.623409484909682, 'val_cer': 0.0021177467174925877, 'val_wer': 0.011574074074074073, 'minutes': 15.137064365545909} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уолга')]
+ep 13 step 6550 loss 0.535 lr 0.00069 15.3min
+ep 13 step 6600 loss 0.681 lr 0.00068 15.4min
+ep 13 step 6650 loss 0.606 lr 0.00067 15.5min
+ep 13 step 6700 loss 0.529 lr 0.00067 15.6min
+ep 13 step 6750 loss 0.559 lr 0.00066 15.7min
+ep 13 step 6800 loss 0.534 lr 0.00065 15.8min
+ep 13 step 6850 loss 0.506 lr 0.00064 15.9min
+ep 13 step 6900 loss 0.575 lr 0.00063 16.0min
+ep 13 step 6950 loss 0.645 lr 0.00062 16.1min
+ep 13 step 7000 loss 0.654 lr 0.00061 16.2min
+{'epoch': 13, 'loss': 0.5823207265623961, 'val_cer': 0.0033883947479881405, 'val_wer': 0.018518518518518517, 'minutes': 16.25459647576014} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уолга')]
+ep 14 step 7050 loss 0.505 lr 0.00060 16.4min
+ep 14 step 7100 loss 0.482 lr 0.00059 16.5min
+ep 14 step 7150 loss 0.432 lr 0.00058 16.6min
+ep 14 step 7200 loss 0.485 lr 0.00057 16.7min
+ep 14 step 7250 loss 0.504 lr 0.00056 16.8min
+ep 14 step 7300 loss 0.502 lr 0.00055 16.9min
+ep 14 step 7350 loss 0.526 lr 0.00055 17.0min
+ep 14 step 7400 loss 0.463 lr 0.00054 17.1min
+ep 14 step 7450 loss 0.495 lr 0.00053 17.2min
+ep 14 step 7500 loss 0.539 lr 0.00052 17.3min
+{'epoch': 14, 'loss': 0.49327716389189147, 'val_cer': 0.005082592121982211, 'val_wer': 0.02546296296296296, 'minutes': 17.342544587453208} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уолга')]
+ep 15 step 7550 loss 0.494 lr 0.00051 17.4min
+ep 15 step 7600 loss 0.479 lr 0.00050 17.6min
+ep 15 step 7650 loss 0.417 lr 0.00049 17.7min
+ep 15 step 7700 loss 0.474 lr 0.00048 17.8min
+ep 15 step 7750 loss 0.463 lr 0.00047 17.9min
+ep 15 step 7800 loss 0.476 lr 0.00047 18.0min
+ep 15 step 7850 loss 0.513 lr 0.00046 18.1min
+ep 15 step 7900 loss 0.467 lr 0.00045 18.2min
+ep 15 step 7950 loss 0.483 lr 0.00044 18.4min
+ep 15 step 8000 loss 0.427 lr 0.00043 18.5min
+{'epoch': 15, 'loss': 0.46908873549885904, 'val_cer': 0.0016941973739940702, 'val_wer': 0.006944444444444444, 'minutes': 18.464905118942262} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уолга')]
+ep 16 step 8050 loss 0.452 lr 0.00042 18.6min
+ep 16 step 8100 loss 0.416 lr 0.00041 18.7min
+ep 16 step 8150 loss 0.420 lr 0.00041 18.8min
+ep 16 step 8200 loss 0.427 lr 0.00040 18.9min
+ep 16 step 8250 loss 0.389 lr 0.00039 19.0min
+ep 16 step 8300 loss 0.440 lr 0.00038 19.1min
+ep 16 step 8350 loss 0.451 lr 0.00037 19.3min
+ep 16 step 8400 loss 0.438 lr 0.00036 19.4min
+ep 16 step 8450 loss 0.484 lr 0.00036 19.5min
+ep 16 step 8500 loss 0.448 lr 0.00035 19.6min
+{'epoch': 16, 'loss': 0.43653540727427875, 'val_cer': 0.0021177467174925877, 'val_wer': 0.009259259259259259, 'minutes': 19.611684755484262} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уолга')]
+ep 17 step 8550 loss 0.415 lr 0.00034 19.7min
+ep 17 step 8600 loss 0.398 lr 0.00033 19.8min
+ep 17 step 8650 loss 0.402 lr 0.00032 19.9min
+ep 17 step 8700 loss 0.411 lr 0.00032 20.0min
+ep 17 step 8750 loss 0.393 lr 0.00031 20.2min
+ep 17 step 8800 loss 0.430 lr 0.00030 20.3min
+ep 17 step 8850 loss 0.349 lr 0.00029 20.4min
+ep 17 step 8900 loss 0.401 lr 0.00029 20.5min
+ep 17 step 8950 loss 0.367 lr 0.00028 20.6min
+ep 17 step 9000 loss 0.384 lr 0.00027 20.7min
+{'epoch': 17, 'loss': 0.39489949591679446, 'val_cer': 0.0025412960609911056, 'val_wer': 0.011574074074074073, 'minutes': 20.730800386269888} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уолга')]
+ep 18 step 9050 loss 0.403 lr 0.00026 20.8min
+ep 18 step 9100 loss 0.400 lr 0.00026 21.0min
+ep 18 step 9150 loss 0.417 lr 0.00025 21.1min
+ep 18 step 9200 loss 0.335 lr 0.00024 21.2min
+ep 18 step 9250 loss 0.401 lr 0.00024 21.3min
+ep 18 step 9300 loss 0.346 lr 0.00023 21.4min
+ep 18 step 9350 loss 0.331 lr 0.00022 21.5min
+ep 18 step 9400 loss 0.341 lr 0.00022 21.6min
+ep 18 step 9450 loss 0.314 lr 0.00021 21.7min
+ep 18 step 9500 loss 0.446 lr 0.00020 21.8min
+{'epoch': 18, 'loss': 0.3734015041370436, 'val_cer': 0.0021177467174925877, 'val_wer': 0.009259259259259259, 'minutes': 21.85528202454249} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уолга')]
+ep 19 step 9550 loss 0.373 lr 0.00020 22.0min
+ep 19 step 9600 loss 0.361 lr 0.00019 22.1min
+ep 19 step 9650 loss 0.303 lr 0.00018 22.2min
+ep 19 step 9700 loss 0.369 lr 0.00018 22.3min
+ep 19 step 9750 loss 0.274 lr 0.00017 22.4min
+ep 19 step 9800 loss 0.316 lr 0.00017 22.5min
+ep 19 step 9850 loss 0.320 lr 0.00016 22.6min
+ep 19 step 9900 loss 0.367 lr 0.00015 22.7min
+ep 19 step 9950 loss 0.375 lr 0.00015 22.8min
+ep 19 step 10000 loss 0.325 lr 0.00014 23.0min
+{'epoch': 19, 'loss': 0.3380998787019746, 'val_cer': 0.0016941973739940702, 'val_wer': 0.006944444444444444, 'minutes': 22.971645486354827} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уолга')]
+ep 20 step 10050 loss 0.324 lr 0.00014 23.1min
+ep 20 step 10100 loss 0.292 lr 0.00013 23.2min
+ep 20 step 10150 loss 0.313 lr 0.00013 23.3min
+ep 20 step 10200 loss 0.289 lr 0.00012 23.4min
+ep 20 step 10250 loss 0.358 lr 0.00012 23.5min
+ep 20 step 10300 loss 0.307 lr 0.00011 23.6min
+ep 20 step 10350 loss 0.311 lr 0.00011 23.8min
+ep 20 step 10400 loss 0.309 lr 0.00010 23.9min
+ep 20 step 10450 loss 0.308 lr 0.00010 24.0min
+ep 20 step 10500 loss 0.305 lr 0.00009 24.1min
+{'epoch': 20, 'loss': 0.31167771953884443, 'val_cer': 0.0016941973739940702, 'val_wer': 0.006944444444444444, 'minutes': 24.08057476679484} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уолга')]
+ep 21 step 10550 loss 0.297 lr 0.00009 24.2min
+ep 21 step 10600 loss 0.294 lr 0.00008 24.3min
+ep 21 step 10650 loss 0.283 lr 0.00008 24.4min
+ep 21 step 10700 loss 0.289 lr 0.00008 24.5min
+ep 21 step 10750 loss 0.367 lr 0.00007 24.6min
+ep 21 step 10800 loss 0.270 lr 0.00007 24.8min
+ep 21 step 10850 loss 0.265 lr 0.00006 24.9min
+ep 21 step 10900 loss 0.333 lr 0.00006 25.0min
+ep 21 step 10950 loss 0.291 lr 0.00006 25.1min
+ep 21 step 11000 loss 0.329 lr 0.00005 25.2min
+{'epoch': 21, 'loss': 0.30181719919802275, 'val_cer': 0.0016941973739940702, 'val_wer': 0.006944444444444444, 'minutes': 25.215243061383564} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уолга')]
+ep 22 step 11050 loss 0.281 lr 0.00005 25.3min
+ep 22 step 11100 loss 0.283 lr 0.00005 25.5min
+ep 22 step 11150 loss 0.290 lr 0.00004 25.6min
+ep 22 step 11200 loss 0.307 lr 0.00004 25.7min
+ep 22 step 11250 loss 0.297 lr 0.00004 25.8min
+ep 22 step 11300 loss 0.299 lr 0.00003 25.9min
+ep 22 step 11350 loss 0.354 lr 0.00003 26.0min
+ep 22 step 11400 loss 0.297 lr 0.00003 26.1min
+ep 22 step 11450 loss 0.268 lr 0.00003 26.2min
+ep 22 step 11500 loss 0.302 lr 0.00003 26.3min
+{'epoch': 22, 'loss': 0.29791174182131547, 'val_cer': 0.0012706480304955528, 'val_wer': 0.004629629629629629, 'minutes': 26.348953199386596} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уолга')]
+ep 23 step 11550 loss 0.327 lr 0.00003 26.5min
+ep 23 step 11600 loss 0.324 lr 0.00003 26.6min
+ep 23 step 11650 loss 0.252 lr 0.00003 26.7min
+ep 23 step 11700 loss 0.277 lr 0.00003 26.8min
+ep 23 step 11750 loss 0.237 lr 0.00003 26.9min
+ep 23 step 11800 loss 0.337 lr 0.00003 27.0min
+ep 23 step 11850 loss 0.304 lr 0.00003 27.1min
+ep 23 step 11900 loss 0.308 lr 0.00003 27.2min
+ep 23 step 11950 loss 0.286 lr 0.00003 27.3min
+ep 23 step 12000 loss 0.194 lr 0.00003 27.5min
+{'epoch': 23, 'loss': 0.28462106214398614, 'val_cer': 0.0012706480304955528, 'val_wer': 0.004629629629629629, 'minutes': 27.46184024810791} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уолга')]
+ep 24 step 12050 loss 0.245 lr 0.00003 27.6min
+ep 24 step 12100 loss 0.281 lr 0.00003 27.7min
+ep 24 step 12150 loss 0.293 lr 0.00003 27.8min
+ep 24 step 12200 loss 0.230 lr 0.00003 27.9min
+ep 24 step 12250 loss 0.281 lr 0.00003 28.0min
+ep 24 step 12300 loss 0.292 lr 0.00003 28.1min
+ep 24 step 12350 loss 0.247 lr 0.00003 28.2min
+ep 24 step 12400 loss 0.269 lr 0.00003 28.4min
+ep 24 step 12450 loss 0.325 lr 0.00003 28.5min
+ep 24 step 12500 loss 0.290 lr 0.00003 28.6min
+{'epoch': 24, 'loss': 0.27508990314236503, 'val_cer': 0.0012706480304955528, 'val_wer': 0.004629629629629629, 'minutes': 28.58339608112971} [('тыл', 'тыл'), ('хаар', 'хаар'), ('уолга', 'уолга')]
+seen_words CER 0.001 WER 0.007
+unseen_words CER 0.173 WER 0.740
+clean CER 0.000 WER 0.002
