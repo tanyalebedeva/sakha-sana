@@ -60,7 +60,7 @@ class Speaker:
     """«Виртуальный диктор»: голос задаётся несколькими параметрами."""
     f0: float = 120.0          # базовая частота основного тона, Гц
     vtl: float = 1.0           # масштаб формант (обратно длине тракта)
-    tempo: float = 1.0         # >1 - быстрее
+    tempo: float = 1.0         # >1 — быстрее
     breath: float = 0.04       # придыхание
     jitter: float = 0.01
     shimmer: float = 0.05
@@ -141,7 +141,7 @@ def text_to_segments(text: str, spk: Speaker) -> list[Seg]:
             kind, voiced, loc, noise = CONS[s]
             vf = _next_vowel_f(word, i)
             gem = 1.9 if ph.long else 1.0
-            if loc is None:            # һ - придыхание с формантами соседнего гласного
+            if loc is None:            # һ — придыхание с формантами соседнего гласного
                 segs.append(Seg("asp", 0.07 * gem * stretch, vf, av=0, af=noise[2], fric=(0, 0), label=s))
                 continue
             loc = list(loc)

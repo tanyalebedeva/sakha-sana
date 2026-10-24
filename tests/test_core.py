@@ -10,7 +10,7 @@ from sakha.phonology import to_ipa, harmony_violations, syllabify
 
 
 def brute_ctc(logits, labels):
-    """Полный перебор путей CTC - эталон для маленьких T."""
+    """Полный перебор путей CTC — эталон для маленьких T."""
     import itertools
     T, V = logits.shape
     lp = logits - np.log(np.exp(logits).sum(-1, keepdims=True))
