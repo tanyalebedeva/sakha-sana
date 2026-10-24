@@ -2,7 +2,15 @@
 python3 train.py --n-train 8000 --epochs 20"""
 import argparse, json, os, pickle, time
 
+import sys
+
 import numpy as np
+
+for _s in (sys.stdout, sys.stderr):  # кириллица и ҕҥһөү в консоли Windows
+    try:
+        _s.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
 
 from sakha.corpus import VOCAB, build, decode, encode
 from sakha.nn import Adam, AcousticModel, ctc_loss, greedy_decode
@@ -126,7 +134,7 @@ def main():
         if cer < best:
             best = cer
             np.savez(f"{args.out}/model.npz", **model.state(), cfg=json.dumps(model.cfg))
-        json.dump(log, open(f"{args.out}/log.json", "w"), ensure_ascii=False, indent=1)
+        json.dump(log, open(f"{args.out}/log.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         if (time.time() - t0) / 60 > args.budget_min:
             print("time budget reached"); break
 
@@ -139,7 +147,7 @@ def main():
         print(name, f"CER {cer:.3f} WER {wer:.3f}", flush=True)
     json.dump(dict(results=results, log=log, pseudo=args.pseudo, params=model.n_params(), n_train=args.n_train,
                    train_hours=sum(len(f) for f in tr_feats) * 0.02 / 3600),
-              open(f"{args.out}/results.json", "w"), ensure_ascii=False, indent=1)
+              open(f"{args.out}/results.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
 
 if __name__ == "__main__":

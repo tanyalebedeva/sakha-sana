@@ -23,18 +23,18 @@ for k in keys:
         tensors.append(dict(shape=list(a.shape), f32=base64.b64encode(a.tobytes()).decode()))
 W = dict(cfg=cfg, chars=CHARS, tensors=tensors, data=base64.b64encode(bytes(blob)).decode())
 weights_js = "window.SANA_WEIGHTS=" + json.dumps(W, ensure_ascii=False) + ";"
-open(os.path.join(HERE, "weights.js"), "w").write(weights_js.replace("window.", "globalThis.", 1))
+open(os.path.join(HERE, "weights.js"), "w", encoding="utf-8").write(weights_js.replace("window.", "globalThis.", 1))
 
-res = json.load(open(os.path.join(run, "results.json")))
+res = json.load(open(os.path.join(run, "results.json"), encoding="utf-8"))
 base_path = os.path.join(HERE, "..", "runs", "main", "results.json")
 if os.path.abspath(base_path) != os.path.abspath(os.path.join(run, "results.json")) and os.path.exists(base_path):
-    b = json.load(open(base_path))
+    b = json.load(open(base_path, encoding="utf-8"))
     res["baseline"] = {k: dict(cer=v["cer"], wer=v["wer"], examples=v["examples"]) for k, v in b["results"].items()}
-page = open(os.path.join(HERE, "page.html")).read()
-page = page.replace("/*BP_TABLE*/", open(os.path.join(HERE, "bp_table.js")).read())
+page = open(os.path.join(HERE, "page.html"), encoding="utf-8").read()
+page = page.replace("/*BP_TABLE*/", open(os.path.join(HERE, "bp_table.js"), encoding="utf-8").read())
 page = page.replace("/*WEIGHTS*/", weights_js)
-page = page.replace("/*SANA_JS*/", open(os.path.join(HERE, "sana.js")).read())
+page = page.replace("/*SANA_JS*/", open(os.path.join(HERE, "sana.js"), encoding="utf-8").read())
 page = page.replace("/*RESULTS*/null", json.dumps(res, ensure_ascii=False))
 out = os.path.join(HERE, "sana.html")
-open(out, "w").write(page)
+open(out, "w", encoding="utf-8").write(page)
 print("page", round(len(page) / 1e6, 2), "MB; int8 weights", round(len(blob) / 1e6, 2), "MB")

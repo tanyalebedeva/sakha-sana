@@ -21,5 +21,5 @@ b64 = base64.b64encode(sos.tobytes()).decode()
 js = ("(function(r){const s='%s';const b=typeof atob==='function'?atob(s):Buffer.from(s,'base64').toString('binary');"
       "const u=Uint8Array.from(b,c=>c.charCodeAt(0));r.SANA_BP={nf:%d,bws:%s,sos:new Float32Array(u.buffer)};})"
       "(typeof window!=='undefined'?window:globalThis);") % (b64, nf, json.dumps(bws))
-open(os.path.join(os.path.dirname(__file__), "bp_table.js"), "w").write(js)
+open(os.path.join(os.path.dirname(__file__), "bp_table.js"), "w", encoding="utf-8").write(js)
 print(bws, len(js))
